@@ -19,19 +19,21 @@ function App() {
     return () => clearInterval(interval);
   }, [timer]);
 
+  // Switch turn
   const nextTurn = () => {
     setPlayerTurn(playerTurn === "player1" ? "player2" : "player1");
     setTimer(30);
     setCurrentWord("");
   };
 
+  // Validation
   const isValidStart = (word) => {
     if (wordHistory.length === 0) return true;
-    const lastWord = wordHistory[wordHistory.length - 1];
+    const lastWord = wordHistory[wordHistory.length - 1].word;
     return lastWord.slice(-1).toLowerCase() === word[0].toLowerCase();
   };
 
-  const isValidStructure = (word) => word.length >= 4 && !wordHistory.includes(word);
+  const isValidStructure = (word) => word.length >= 4 && !wordHistory.map(w => w.word).includes(word);
 
   const checkWordMeaning = async (word) => {
     try {
@@ -42,15 +44,24 @@ function App() {
     }
   };
 
+  // Handle word submission
   const handleSubmit = async (e) => {
     e.preventDefault();
     const validMeaning = await checkWordMeaning(currentWord);
-    if (isValidStart(currentWord) && isValidStructure(currentWord) && validMeaning) {
-      setWordHistory([...wordHistory, currentWord]);
-      setScores({ ...scores, [playerTurn]: scores[playerTurn] + 1 });
-    } else {
-      setScores({ ...scores, [playerTurn]: scores[playerTurn] - 1 });
-    }
+    const isValid = isValidStart(currentWord) && isValidStructure(currentWord) && validMeaning;
+
+    // Update word history
+    setWordHistory([
+      ...wordHistory,
+      { word: currentWord, valid: isValid }
+    ]);
+
+    // Update score
+    setScores({
+      ...scores,
+      [playerTurn]: isValid ? scores[playerTurn] + 1 : scores[playerTurn] - 1
+    });
+
     nextTurn();
   };
 
@@ -59,7 +70,7 @@ function App() {
       <h1 className="text-4xl font-bold mb-8 text-center text-gray-800">Shiritori Game</h1>
 
       {/* Scoreboard */}
-      <div className="flex w-full max-w-3xl justify-between mb-6">
+      <div className="flex w-full max-w-3xl justify-between mb-6 gap-4">
         {["player1", "player2"].map((player) => (
           <div
             key={player}
@@ -86,7 +97,7 @@ function App() {
           type="text"
           value={currentWord}
           onChange={(e) => setCurrentWord(e.target.value)}
-          className="flex-1 border border-gray-400 rounded-l-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+          className="flex-1 border border-gray-400 rounded-l-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-indigo-500 text-gray-800"
           placeholder="Enter word"
           required
         />
@@ -102,12 +113,14 @@ function App() {
       <div className="max-w-3xl w-full bg-white p-5 rounded-lg shadow-lg overflow-y-auto max-h-64">
         <h2 className="text-2xl font-semibold mb-4 text-gray-700">Word History</h2>
         <div className="flex flex-wrap gap-3">
-          {wordHistory.map((word, index) => (
+          {wordHistory.map((entry, index) => (
             <span
               key={index}
-              className="px-4 py-2 bg-gray-200 rounded-full text-gray-800 shadow-sm"
+              className={`px-4 py-2 rounded-full text-white shadow-sm ${
+                entry.valid ? "bg-green-500" : "bg-red-500"
+              }`}
             >
-              {word}
+              {entry.word}
             </span>
           ))}
         </div>
