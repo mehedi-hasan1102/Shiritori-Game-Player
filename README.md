@@ -1,75 +1,73 @@
-# React + Vite + Tailwind CSS Boilerplate
+# Shiritori Game
 
-This is a minimal boilerplate for React projects using Vite for fast development and builds, and Tailwind CSS for styling.
+[![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)](https://reactjs.org/)
+[![Vite](https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev/)
+[![Tailwind CSS](https://img.shields.io/badge/tailwind-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg?style=for-the-badge)](https://github.com/mehedi-hasan1102/Shiritori-Game-Player/blob/main/LICENSE)
 
-## Project Setup
+A multiplayer Shiritori game built with React, Vite, and Tailwind CSS. Players take turns entering words, following the last-letter rule, while scoring points for correct words.
+
+**Live Demo:** [https://shiritori-game-player.vercel.app/](https://shiritori-game-player.vercel.app/)
+
+## Project Overview
+
+In Shiritori:
+
+*   Players take turns entering words.
+*   Each new word must start with the last letter of the previous word.
+*   Words cannot be repeated.
+*   Must be valid English words (verified with [DictionaryAPI](https://dictionaryapi.dev/)).
+*   Minimum 4 letters per word.
+*   Timer: 30 seconds per turn.
+*   Correct words earn +1 point; invalid words earn 0 points.
+
+## Features
+
+*   **Turn-based gameplay:** Players take turns to enter words.
+*   **Score tracking:** The score of each player is tracked and displayed.
+*   **Word history:** A history of the words played is displayed, with correct/incorrect colors.
+*   **Countdown timer:** A 30-second countdown timer for each turn.
+*   **Responsive UI:** The UI is responsive and works on all screen sizes.
+*   **Ready for deployment:** The project is ready to be deployed on Vercel or Netlify.
+
+## Getting Started
 
 ### Prerequisites
 
-- Node.js (v16 or higher)
-- npm, yarn, or pnpm
+*   Node.js (v16 or higher)
+*   npm, yarn, or pnpm
 
 ### Installation
 
 1.  Clone the repository:
+
     ```bash
     git clone https://github.com/mehedi-hasan1102/Shiritori-Game-Player.git
     ```
+
 2.  Navigate to the project directory:
+
     ```bash
-    cd assignment-react-demu-set-up
+    cd Shiritori-Game-Player
     ```
+
 3.  Install the dependencies:
+
     ```bash
     npm install
     ```
 
 ### Available Scripts
 
--   `npm run dev`: Starts the development server.
--   `npm run build`: Builds the project for production.
--   `npm run lint`: Lints the project files.
--   `npm run preview`: Previews the production build.
+*   `npm run dev`: Starts the development server.
+*   `npm run build`: Builds the project for production.
+*   `npm run lint`: Lints the project files.
+*   `npm run preview`: Previews the production build.
 
-## Dependencies
+## Contributing
 
-### Main Dependencies
+Contributions are welcome! Please feel free to submit a pull request or open an issue.
 
--   `react`: A JavaScript library for building user interfaces.
--   `react-dom`: Serves as the entry point to the DOM and server renderers for React.
--   `axios`: A promise-based HTTP client for the browser and node.js.
--   `tailwindcss`: A utility-first CSS framework for rapid UI development.
+## License
 
-### Development Dependencies
-
--   `@vitejs/plugin-react`: The official Vite plugin for React.
--   `eslint`: A tool for identifying and reporting on patterns found in ECMAScript/JavaScript code.
--   `daisyui`: A Tailwind CSS component library.
--   `vite`: A build tool that aims to provide a faster and leaner development experience for modern web projects.
-
-## How to Use
-
-1.  Start the development server:
-    ```bash
-    npm run dev
-    ```
-2.  Open your browser and navigate to `http://localhost:5173`.
-3.  Start building your React application!
-
-## Linting
-
-This project uses ESLint to enforce code quality. To run the linter, use:
-
-```bash
-npm run lint
-```
-
-## Building for Production
-
-To build the project for production, use:
-
-```bash
-npm run build
-```
-
-The production-ready files will be located in the `dist` directory.
+This project is licensed under the MIT License. See the [LICENSE](https://github.com/mehedi-hasan1102/Shiritori-Game-Player/blob/main/LICENSE) file for details.
