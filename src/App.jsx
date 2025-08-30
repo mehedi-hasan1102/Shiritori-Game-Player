@@ -68,6 +68,20 @@ function App() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-100 to-gray-300 flex flex-col items-center p-6">
       <h1 className="text-4xl font-bold mb-8 text-center text-gray-800">Shiritori Game</h1>
+{/* How to Play */}
+<div className="max-w-3xl w-full bg-white p-5 rounded-lg shadow-md mb-6">
+  <h2 className="text-2xl font-semibold mb-2 text-gray-800">How to Play</h2>
+  <ul className="list-disc list-inside text-gray-700">
+    <li>Players take turns entering words.</li>
+    <li>Each new word must start with the last letter of the previous word.</li>
+    <li>Words cannot be repeated.</li>
+    <li>Each word must be a valid English word (checked via DictionaryAPI).</li>
+    <li>Minimum 4 letters per word.</li>
+    <li>Correct words earn +1 point; invalid words earn 0 points.</li>
+    <li>Timer: each player has 30 seconds per turn.</li>
+    <li>The game ends when you stop entering words, and the player with highest score wins.</li>
+  </ul>
+</div>
 
       {/* Scoreboard */}
       <div className="flex w-full max-w-3xl justify-between mb-6 gap-4">
@@ -124,7 +138,10 @@ function App() {
             </span>
           ))}
         </div>
+
+        
       </div>
+      
     </div>
   );
 }
